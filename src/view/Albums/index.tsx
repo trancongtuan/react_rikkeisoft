@@ -31,28 +31,27 @@ const AlbumsContainer = () => {
   return (
     <div className="mt-[80px] flex max-[875px]:flex-col w-full">
       <LeftMenu onClick={showAlbumsPhoto} />
-      {listPhoto.length && (
-        <div className="flex flex-col w-full">
-          <div className="flex gap-x-3 mt-4 items-center justify-center w-full">
-            <span className="block text-gray-700 text-sm font-bold ">
-              search image
-            </span>
-            <input
-              onChange={({ target: { value } }) => {
-                handleSearch(value);
-              }}
-              className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="grid md:grid-cols-4 gap-4 p-4">
-            {listPhoto.map((item) => (
-              <LazyLoad threshold={1} key={item.id}>
-                {renderContennt(item)}
-              </LazyLoad>
-            ))}
-          </div>
+      <div className="flex flex-col w-full">
+        <div className="flex gap-x-3 mt-4 items-center justify-center w-full">
+          <span className="block text-gray-700 text-sm font-bold ">
+            search image
+          </span>
+          <input
+            disabled={!idPhoto}
+            onChange={({ target: { value } }) => {
+              handleSearch(value);
+            }}
+            className="shadow disabled:bg-gray-200 disabled:cursor-not-allowed appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
         </div>
-      )}
+        <div className="grid md:grid-cols-4 gap-4 p-4">
+          {listPhoto.map((item) => (
+            <LazyLoad threshold={1} key={item.id}>
+              {renderContennt(item)}
+            </LazyLoad>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
